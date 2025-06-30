@@ -5,6 +5,9 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+string(APPEND CMAKE_CXX_FLAGS_DEBUG " -g -O0")
+string(APPEND CMAKE_CXX_FLAGS_RELEASE " -O3 -march=native")
+
 # Configure local githooks
 execute_process(
     COMMAND git config core.hooksPath .githooks
@@ -13,7 +16,8 @@ execute_process(
 )
 
 find_package(GTest REQUIRED)
-find_package(Boost REQUIRED COMPONENTS program_options)
+find_package(Boost REQUIRED COMPONENTS program_options headers)
+find_package(range-v3 REQUIRED)
 
 include_directories(
     ${CMAKE_SOURCE_DIR}/include
@@ -31,7 +35,6 @@ target_link_libraries(${target}
         metric_accumulator
         metric
         cmd_options
-        range-v3::range-v3
 )
 
 include(CTest)

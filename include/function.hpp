@@ -1,19 +1,8 @@
 #pragma once
-#include <unistd.h>
 
-#include <algorithm>
-#include <array>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
 #include <filesystem>
-#include <fstream>
-#include <functional>
-#include <iostream>
 #include <ranges>
-#include <sstream>
 #include <string>
-#include <variant>
 #include <vector>
 
 #include "file.hpp"
@@ -32,7 +21,7 @@ struct Function {
 };
 
 struct FunctionExtractor {
-    std::vector<Function> Get(const analyser::file::File& file);
+    static std::vector<Function> Get(const file::File& file);
 
 private:
     struct Position {
@@ -52,12 +41,12 @@ private:
         Position end;
     };
 
-    FunctionNameLocation GetNameLocation(const std::string& function_ast);
-    std::string GetNameFromSource(const std::string& function_ast,
+    static FunctionNameLocation GetNameLocation(const std::string& function_ast);
+    static std::string GetNameFromSource(const std::string& function_ast,
                                   const std::vector<std::string>& lines);
-    std::optional<ClassInfo> FindEnclosingClass(const std::string& ast,
+    static std::optional<ClassInfo> FindEnclosingClass(const std::string& ast,
                                                 const FunctionNameLocation& func_loc);
-    std::string GetClassNameFromSource(const ClassInfo& class_info,
+    static std::string GetClassNameFromSource(const ClassInfo& class_info,
                                        const std::vector<std::string>& lines);
 };
 

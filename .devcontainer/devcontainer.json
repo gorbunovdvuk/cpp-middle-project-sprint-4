@@ -2,7 +2,8 @@
   "name": "Ubuntu25.04 with GCC15",
   "build": {
       "dockerfile": "./Dockerfile",
-      "context": "."
+      "context": ".",
+      "platform": "linux/amd64"
   },
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "customizations": {
