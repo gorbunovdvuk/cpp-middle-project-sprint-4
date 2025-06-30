@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Build + test inside dev-container
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: |
+            conan install . \
+              --output-folder build \
+              --build=missing \
+              -s build_type=Debug
+
+            conan build . \
+              --build=missing \
+              --output-folder build
+
+            ctest --test-dir build --output-on-failure
