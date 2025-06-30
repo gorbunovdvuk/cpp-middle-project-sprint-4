@@ -33,7 +33,7 @@ MetricResult::ValueType CyclomaticComplexityMetric::CalculateImpl(const function
                     boost::find_iterator<std::string::const_iterator>{}
                 );
             }
-        ) | std::views::join) + 1.0);
+        ) | std::views::join) + 1);
 }
 
 }  // namespace analyser::metric::metric_impl
