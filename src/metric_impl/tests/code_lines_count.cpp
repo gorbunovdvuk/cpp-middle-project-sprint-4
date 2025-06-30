@@ -11,7 +11,7 @@ class CodeLinesCountMetricTest : public ::testing::TestWithParam<Parameters> {};
 
 TEST_P(CodeLinesCountMetricTest, CheckAllFiles) {
     const auto& [path, expected] = GetParam();
-    auto function = function::FunctionExtractor::Get(file::File{path}).front();
+    auto function = function::FunctionExtractor::Get(file::File{std::filesystem::path(TEST_SOURCE_DIR) / path}).front();
     EXPECT_DOUBLE_EQ(CodeLinesCountMetric{}.Calculate(function).value, expected);
 }
 
