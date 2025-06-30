@@ -4,6 +4,6 @@
 
 namespace analyser::metric::metric_impl {
 
-// здесь ваш код
+
 
 }  // namespace analyser::metric::metric_impl
