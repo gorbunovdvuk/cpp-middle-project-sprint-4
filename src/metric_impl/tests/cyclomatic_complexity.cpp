@@ -10,7 +10,7 @@ class CyclomaticComplexityMetricTest : public ::testing::TestWithParam<Parameter
 
 TEST_P(CyclomaticComplexityMetricTest, CheckAllFiles) {
     const auto& [path, expected] = GetParam();
-    auto function = function::FunctionExtractor::Get(file::File{path}).front();
+    auto function = function::FunctionExtractor::Get(file::File{std::filesystem::path(TEST_SOURCE_DIR) / path}).front();
     EXPECT_DOUBLE_EQ(CyclomaticComplexityMetric{}.Calculate(function).value, expected);
 }
 

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <fstream>
+#include <functional>
+#include <cstring>
 #include <iostream>
 #include <memory>
 #include <ranges>
