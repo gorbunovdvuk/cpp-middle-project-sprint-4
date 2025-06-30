@@ -22,13 +22,9 @@ jobs:
         uses: devcontainers/ci@v0.3
         with:
           runCmd: |
-            conan install . \
-              --output-folder build \
-              --build=missing \
-              -s build_type=Debug
-
             conan build . \
               --build=missing \
-              --output-folder build
+              --output-folder build \
+              -s build_type=Debug
 
-            ctest --test-dir build --output-on-failure
+            ctest --test-dir build/build --output-on-failure --verbose
