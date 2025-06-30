@@ -28,13 +28,22 @@ void SumAverageAccumulator::Accumulate(const metric::MetricResult& metric_result
 }
 
 void SumAverageAccumulator::Finalize() {
-    average = static_cast<double>(sum) / count;
+    if (count > 0) {
+        average = static_cast<double>(sum) / count;
+    }
     is_finalized = true;
 }
 
 void SumAverageAccumulator::Reset() {
     average = sum = count = 0;
     is_finalized = false;
+}
+
+SumAverageAccumulator::SumAverage SumAverageAccumulator::Get() const {
+    if (!is_finalized) {
+        throw std::runtime_error("Accumulator is not finalized");
+    }
+    return {sum, average};
 }
 
 // здесь ваш код

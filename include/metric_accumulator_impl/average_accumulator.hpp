@@ -11,7 +11,7 @@ struct AverageAccumulator final : IAccumulator {
 
     void Reset() override;
 
-    double Get() const { return average; }
+    double Get() const;
 
 private:
     int sum = 0;

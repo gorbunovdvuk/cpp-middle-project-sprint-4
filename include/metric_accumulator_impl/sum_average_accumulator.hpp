@@ -17,7 +17,7 @@ struct SumAverageAccumulator final : IAccumulator {
 
     void Reset() override;
 
-    SumAverage Get() const { return {sum, average}; }
+    SumAverage Get() const;
 
 private:
     int sum = 0;
