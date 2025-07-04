@@ -14,6 +14,8 @@ void MetricsAccumulator::AccumulateNextFunctionResults(const std::vector<metric:
     std::ranges::for_each(metric_results, [this](const metric::MetricResult &result) {
         if (auto it = accumulators_.find(result.metric_name); it != accumulators_.end()) {
             it->second->Accumulate(result);
+        } else {
+            throw std::runtime_error("Could not find metric");
         }
     });
 }

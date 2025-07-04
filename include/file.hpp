@@ -14,7 +14,7 @@ namespace analyser::file {
 struct File {
     static inline const std::string command_prefix = std::invoke([]() {
         std::string result = "tree-sitter parse ";
-        if (auto value = std::getenv("USE_HOME_CONFIG"); value == nullptr || strcmp(value, "1") != 0) {
+        if (auto value = std::getenv("USE_HOME_CONFIG"); value == nullptr || std::string_view(value) != "1") {
             result += "--config-path /root/.config/tree-sitter/config.json ";
         }
         return result;
